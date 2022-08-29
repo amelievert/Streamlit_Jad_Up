@@ -562,7 +562,7 @@ if page==pages[2]:
            * et à la mise à l'échelle.
            """)
   
-  expander1.image('preprocessing.JPG', caption='Les étapes de préprocessing')     
+#expander1.image('preprocessing.JPG', caption='Les étapes de préprocessing')     
 
 
 # ---------- Les étapes de préprocessing -----------
