@@ -1039,10 +1039,6 @@ if page==pages[5]:
 # Volet entrainement du modèle de la campagne -----------------------------------------------------------------------
 
   feats_modif=feats.copy()
-  for month in ['month_jan', 'month_feb','month_mar', 'month_apr', 'month_may','month_jun', 'month_jul','month_aug', 'month_sep','month_oct', 'month_nov','month_dec']:
-    feats_modif[month]=0
-  for duration in ["t_duration_1", "t_duration_2", "t_duration_3", "t_duration_4"]:
-    feats_modif[duration]=0
 
   col6, col7, col8  = st.columns(3)
 
@@ -1068,6 +1064,8 @@ if page==pages[5]:
 
     # Choix du mois -----------------------------------
     if m == "Janvier":
+      for month in ['month_jan', 'month_feb','month_mar', 'month_apr', 'month_may','month_jun', 'month_jul','month_aug', 'month_sep','month_oct', 'month_nov','month_dec']:
+        feats_modif[month]=0
       feats_modif_x["month_jan"]=1
     elif m == "Février":
       feats_modif_x["month_feb"]=1
@@ -1094,6 +1092,8 @@ if page==pages[5]:
 
     # Choix de la durée -----------------------------------
     if d in ["1:00","2:00"]:
+      for duration in ["t_duration_1", "t_duration_2", "t_duration_3", "t_duration_4"]:
+        feats_modif[duration]=0
       feats_modif_x["t_duration_1"]=1
     elif d in ["3:00","4:00"]:
       feats_modif_x["t_duration_2"]=1    
