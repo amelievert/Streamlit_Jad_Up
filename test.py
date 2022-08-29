@@ -1038,12 +1038,12 @@ if page==pages[5]:
 
 # Volet entrainement du modèle de la campagne -----------------------------------------------------------------------
 
-  feats_modif=feats.copy()
+  #feats_modif=feats.copy()
 
   col6, col7, col8  = st.columns(3)
 
   if col7.button('Lancer la prédiction'): 
-    feats_modif_x=feats_modif.copy()
+    feats_modif_x=feats.copy()
 
     # Choix du modèle -----------------------------------
     if model == "Régression logistique":
@@ -1068,26 +1068,48 @@ if page==pages[5]:
         feats_modif[month]=0
       feats_modif_x["month_jan"]=1
     elif m == "Février":
+      for month in ['month_jan', 'month_feb','month_mar', 'month_apr', 'month_may','month_jun', 'month_jul','month_aug', 'month_sep','month_oct', 'month_nov','month_dec']:
+        feats_modif[month]=0
       feats_modif_x["month_feb"]=1
     elif m == "Mars":
-      feats_modif_x["month_mar"]=1
+      for month in ['month_jan', 'month_feb','month_mar', 'month_apr', 'month_may','month_jun', 'month_jul','month_aug', 'month_sep','month_oct', 'month_nov','month_dec']:
+        feats_modif[month]=0
+       feats_modif_x["month_mar"]=1
     elif m == "Avril":
+      for month in ['month_jan', 'month_feb','month_mar', 'month_apr', 'month_may','month_jun', 'month_jul','month_aug', 'month_sep','month_oct', 'month_nov','month_dec']:
+        feats_modif[month]=0
       feats_modif_x["month_apr"]=1
     elif m == "Mai":
+      for month in ['month_jan', 'month_feb','month_mar', 'month_apr', 'month_may','month_jun', 'month_jul','month_aug', 'month_sep','month_oct', 'month_nov','month_dec']:
+        feats_modif[month]=0
       feats_modif_x["month_may"]=1
     elif m == "Juin":
+      for month in ['month_jan', 'month_feb','month_mar', 'month_apr', 'month_may','month_jun', 'month_jul','month_aug', 'month_sep','month_oct', 'month_nov','month_dec']:
+        feats_modif[month]=0
       feats_modif_x["month_jun"]=1
     elif m == "Juillet":
+      for month in ['month_jan', 'month_feb','month_mar', 'month_apr', 'month_may','month_jun', 'month_jul','month_aug', 'month_sep','month_oct', 'month_nov','month_dec']:
+        feats_modif[month]=0
       feats_modif_x["month_jul"]=1
     elif m == "Août":
+      for month in ['month_jan', 'month_feb','month_mar', 'month_apr', 'month_may','month_jun', 'month_jul','month_aug', 'month_sep','month_oct', 'month_nov','month_dec']:
+        feats_modif[month]=0
       feats_modif_x["month_aug"]=1
     elif m == "Septembre":
+      for month in ['month_jan', 'month_feb','month_mar', 'month_apr', 'month_may','month_jun', 'month_jul','month_aug', 'month_sep','month_oct', 'month_nov','month_dec']:
+        feats_modif[month]=0
       feats_modif_x["month_sep"]=1
     elif m == "Octobre":
+      for month in ['month_jan', 'month_feb','month_mar', 'month_apr', 'month_may','month_jun', 'month_jul','month_aug', 'month_sep','month_oct', 'month_nov','month_dec']:
+        feats_modif[month]=0
       feats_modif_x["month_oct"]=1
     elif m == "Novembre":
+      for month in ['month_jan', 'month_feb','month_mar', 'month_apr', 'month_may','month_jun', 'month_jul','month_aug', 'month_sep','month_oct', 'month_nov','month_dec']:
+        feats_modif[month]=0
       feats_modif_x["month_nov"]=1
-    else:
+    elif m == "Décembre":
+      for month in ['month_jan', 'month_feb','month_mar', 'month_apr', 'month_may','month_jun', 'month_jul','month_aug', 'month_sep','month_oct', 'month_nov','month_dec']:
+        feats_modif[month]=0
       feats_modif_x["month_dec"]=1
 
     # Choix de la durée -----------------------------------
@@ -1096,10 +1118,16 @@ if page==pages[5]:
         feats_modif[duration]=0
       feats_modif_x["t_duration_1"]=1
     elif d in ["3:00","4:00"]:
+      for duration in ["t_duration_1", "t_duration_2", "t_duration_3", "t_duration_4"]:
+        feats_modif[duration]=0
       feats_modif_x["t_duration_2"]=1    
-    elif d in ["4:00","5:00","6:00","7:00"]:
+    elif d in ["5:00","6:00","7:00"]:
+      for duration in ["t_duration_1", "t_duration_2", "t_duration_3", "t_duration_4"]:
+        feats_modif[duration]=0
       feats_modif_x["t_duration_3"]=1                  
-    else:
+    elif d in ["8:00","9:00","10:00"]:
+      for duration in ["t_duration_1", "t_duration_2", "t_duration_3", "t_duration_4"]:
+        feats_modif[duration]=0
       feats_modif_x["t_duration_4"]=1    
 
     # Entrainement du modèle choisi -----------------------------------
