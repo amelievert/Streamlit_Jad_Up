@@ -978,7 +978,7 @@ if page==pages[4]:
               On peut observer par variable, et par paquet d’instances, l’impact global sur le f(x).
               Si on prend l’exemple de la variable t_duration_1 on constate que sur les 2500 premières instances de la base test,
               la couleur est rouge donc contribution positive au modèle, càd impact positif (la cible « souscription d’un contrat à terme » sera un succès.
-              Pour les les instances suivantes, la contribution est négative, donc pas de souscription.
+              Pour les instances suivantes, la contribution est négative, donc pas de souscription.
               Pour la variable t_duration_4 on constate une très forte contribution positive pour les instances 1500 à 2300,
               en revanche couleur bleue pour les autres instances donc pas de souscription, mais le bleu est plus clair,
               donc contribution plus légère à la SHAP value globale.
@@ -1128,12 +1128,13 @@ if page==pages[5]:
     col11.subheader("Chiffres clés")
 
     col11.metric("Nombre de clients scorés positifs", sum(probas['Classification']), sum(probas['Classification'])-5289)  
-    col11.metric("Performance présumée de la campagne *", "{:.2%}".format(sum(probas['Classification'])/11162), "{:.2%}".format(sum(probas['Classification'])/11162-0.47))  
-    col11.metric("Score du modèle sélectionné **", "{:.2%}".format(accuracy), "{:.2%}".format(accuracy-xgb_accuracy)) 
-         
+    #col11.metric("Performance présumée de la campagne *", "{:.2%}".format(sum(probas['Classification'])/11162), "{:.2%}".format(sum(probas['Classification'])/11162-0.47))  
+    col11.write(" ")
+    col11.metric("Score du modèle sélectionné *", "{:.2%}".format(accuracy), "{:.2%}".format(accuracy-xgb_accuracy)) 
+
+    # - *Performance : Pourcentage estimé de clients susceptibles d'effectuer un dépôt lors de la campagne.
     st.info("""
-        - *Performance : Pourcentage estimé de clients susceptibles d'effectuer un dépôt lors de la campagne.
-        - **Score du modèle : Taux de prédictions correctes effectuées par le modèle choisi. Le modèle XGBoost est utilisé comme référence.
+        - *Score du modèle : Taux de prédictions correctes effectuées par le modèle choisi. Le modèle XGBoost est utilisé comme référence.
         """)
 
     st.write(" ")
