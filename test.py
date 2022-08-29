@@ -1074,7 +1074,7 @@ if page==pages[5]:
     elif m == "Mars":
       for month in ['month_jan', 'month_feb','month_mar', 'month_apr', 'month_may','month_jun', 'month_jul','month_aug', 'month_sep','month_oct', 'month_nov','month_dec']:
         feats_modif[month]=0
-       feats_modif_x["month_mar"]=1
+      feats_modif_x["month_mar"]=1
     elif m == "Avril":
       for month in ['month_jan', 'month_feb','month_mar', 'month_apr', 'month_may','month_jun', 'month_jul','month_aug', 'month_sep','month_oct', 'month_nov','month_dec']:
         feats_modif[month]=0
