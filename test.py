@@ -1140,10 +1140,10 @@ if page==pages[5]:
         - *Score du modèle : Taux de prédictions correctes effectuées par le modèle choisi. Le modèle XGBoost est utilisé comme référence.
         """)
 
-    st.write(" ")
-    st.subheader("🏆 La combinaison gagnante")
-    st.success("""
-        La meilleure combinaison de paramètres semble être la suivante : \n
-        - Durée d'appel supérieure à **8 min**
-        - Lancement au cours du mois d'**octobre**
-        """)
+    #st.write(" ")
+    #st.subheader("🏆 La combinaison gagnante")
+    #st.success("""
+    #    La meilleure combinaison de paramètres semble être la suivante : \n
+    #    - Durée d'appel supérieure à **8 min**
+    #    - Lancement au cours du mois d'**octobre**
+    #    """)
