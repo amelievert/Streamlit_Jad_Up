@@ -897,20 +897,20 @@ if page==pages[4]:
               \n
            """)
 
-  shap = pd.read_csv('SHAP/shap.csv', sep = ',')
+  shap = pd.read_csv('shap.csv', sep = ',')
          
 # Général  -----------------------------------------------------------------------
 
   col1, col2, col3  = st.columns((2,0.5,2))
          
   col1.subheader("Summary")
-  col1.image("SHAP/shap.summary_plot.png")       
+  col1.image("shap.summary_plot.png")       
          
   col3.subheader("Plots Bar")
-  col3.image("SHAP/shap.plots.bar.png")   
+  col3.image("shap.plots.bar.png")   
          
   col3.subheader("Heatmap")
-  col3.image("SHAP/shap.plots.heatmap.png") 
+  col3.image("shap.plots.heatmap.png") 
          
 # Aperçus à la ligne  -----------------------------------------------------------------------  
 
@@ -929,10 +929,10 @@ if page==pages[4]:
   col6.metric("Estimation ", predict)
 
   col4.subheader("WaterFall")
-  col4.image(f"SHAP/waterfall_{i}.png")
+  col4.image(f"waterfall_{i}.png")
 
   st.subheader("Forceplot")
-  st.image(f"SHAP/forceplot_{i}.png")
+  st.image(f"forceplot_{i}.png")
          
   if i==31:   # nouveau jeu de données : initialisé à 20
     col6.info("""
