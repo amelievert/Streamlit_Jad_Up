@@ -1027,16 +1027,22 @@ if page==pages[5]:
          
   m = col4.select_slider(
      '📅 Quel est le mois prévisionnel de lancement pour cette campagne ?',
-     options=['Janvier', 'Février','Mars', 'Avril', 'Mai','Juin', 'Juillet', 'Août', 'Septembre','Octobre', 'Novembre','Décembre'])
+     options=['Par défaut','Janvier', 'Février','Mars', 'Avril', 'Mai','Juin', 'Juillet', 'Août', 'Septembre','Octobre', 'Novembre','Décembre'])
          
   d = col4.select_slider(
      "⌚ A combien de minutes estimez-vous la durée d'un appel téléphonique pour cette campagne ?",
-     options=["1:00", "2:00", "3:00", "4:00", "5:00", "6:00", "7:00", "8:00", "9:00", "10:00"], value="5:00")
+     options=["Par défaut","1:00", "2:00", "3:00", "4:00", "5:00", "6:00", "7:00", "8:00", "9:00", "10:00"], value="Par défaut")
    
   st.write(" ")
   st.write(" ")
 
 # Volet entrainement du modèle de la campagne -----------------------------------------------------------------------
+
+  feats_modif=feats.copy()
+  for month in ['month_jan', 'month_feb','month_mar', 'month_apr', 'month_may','month_jun', 'month_jul','month_aug', 'month_sep','month_oct', 'month_nov','month_dec']:
+    feats_modif[month]=0
+  for duration in ["t_duration_1", "t_duration_2", "t_duration_3", "t_duration_4"]:
+    feats_modif[duration]=0
 
   col6, col7, col8  = st.columns(3)
 
