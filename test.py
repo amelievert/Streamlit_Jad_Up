@@ -50,7 +50,6 @@ page = st.sidebar.radio("Aller vers", pages)
 
 df = pd.read_csv('bank.csv', sep = ',')
 
-
 # désactivé xgbc ET RFC car les 2 activés plus loin # # # #
 rlc = load('Regression logistique.joblib')
 knn = load('K plus proches voisins.joblib')
@@ -59,7 +58,6 @@ rfc = load('Random Forest Classifier.joblib')
 #xgbc = load('XG Boost Classifier.joblib')
 xgbc = xgb.XGBClassifier()
 xgbc.load_model("XG Boost Classifier.json")
-
 
 
 #xgbc = rfc
@@ -91,7 +89,6 @@ dtc_f1=compare.iloc[2]["f1"]
 rfc_f1=compare.iloc[3]["f1"]
 xgb_f1=compare.iloc[4]["f1"]
 
-
 # rajout
 compare_train = pd.read_csv('compare_train_scores.csv', sep = ',')
 
@@ -118,7 +115,6 @@ knn_f1_train=compare_train.iloc[1]["f1"]
 dtc_f1_train=compare_train.iloc[2]["f1"]
 rfc_f1_train=compare_train.iloc[3]["f1"]
 xgb_f1_train=compare_train.iloc[4]["f1"]
-
 
 
 # ______________________________________________________________________________________________________
@@ -268,6 +264,7 @@ roc_auc_xgb = auc(fpr_xgb, tpr_xgb)
 # ---------- Jeu de données modifié -----------
 
 feats_modif=feats.copy()
+
 for month in ['month_jan', 'month_feb','month_mar', 'month_apr', 'month_may','month_jun', 'month_jul','month_aug', 'month_sep','month_oct', 'month_nov','month_dec']:
   feats_modif[month]=0
 for duration in ["t_duration_1", "t_duration_2", "t_duration_3", "t_duration_4"]:
@@ -1063,73 +1060,50 @@ if page==pages[5]:
       accuracy=xgb_accuracy
 
     # Choix du mois -----------------------------------
-    if m == "Janvier":
-      for month in ['month_jan', 'month_feb','month_mar', 'month_apr', 'month_may','month_jun', 'month_jul','month_aug', 'month_sep','month_oct', 'month_nov','month_dec']:
-        feats_modif[month]=0
+    if m == "par défaut":
+      for month in ['month_jan', 'month_feb','month_mar', 'month_apr', 'month_may','month_jun', 'month_jul','month_aug', 'month_sep','month_oct', 'month_nov','month_dec']:  
+        feats_modif_x[month] = feats[month]
+    elif m == "Janvier":
       feats_modif_x["month_jan"]=1
     elif m == "Février":
-      for month in ['month_jan', 'month_feb','month_mar', 'month_apr', 'month_may','month_jun', 'month_jul','month_aug', 'month_sep','month_oct', 'month_nov','month_dec']:
-        feats_modif[month]=0
       feats_modif_x["month_feb"]=1
     elif m == "Mars":
-      for month in ['month_jan', 'month_feb','month_mar', 'month_apr', 'month_may','month_jun', 'month_jul','month_aug', 'month_sep','month_oct', 'month_nov','month_dec']:
-        feats_modif[month]=0
       feats_modif_x["month_mar"]=1
     elif m == "Avril":
-      for month in ['month_jan', 'month_feb','month_mar', 'month_apr', 'month_may','month_jun', 'month_jul','month_aug', 'month_sep','month_oct', 'month_nov','month_dec']:
-        feats_modif[month]=0
       feats_modif_x["month_apr"]=1
     elif m == "Mai":
-      for month in ['month_jan', 'month_feb','month_mar', 'month_apr', 'month_may','month_jun', 'month_jul','month_aug', 'month_sep','month_oct', 'month_nov','month_dec']:
-        feats_modif[month]=0
       feats_modif_x["month_may"]=1
     elif m == "Juin":
-      for month in ['month_jan', 'month_feb','month_mar', 'month_apr', 'month_may','month_jun', 'month_jul','month_aug', 'month_sep','month_oct', 'month_nov','month_dec']:
-        feats_modif[month]=0
       feats_modif_x["month_jun"]=1
     elif m == "Juillet":
-      for month in ['month_jan', 'month_feb','month_mar', 'month_apr', 'month_may','month_jun', 'month_jul','month_aug', 'month_sep','month_oct', 'month_nov','month_dec']:
-        feats_modif[month]=0
       feats_modif_x["month_jul"]=1
     elif m == "Août":
-      for month in ['month_jan', 'month_feb','month_mar', 'month_apr', 'month_may','month_jun', 'month_jul','month_aug', 'month_sep','month_oct', 'month_nov','month_dec']:
-        feats_modif[month]=0
       feats_modif_x["month_aug"]=1
     elif m == "Septembre":
-      for month in ['month_jan', 'month_feb','month_mar', 'month_apr', 'month_may','month_jun', 'month_jul','month_aug', 'month_sep','month_oct', 'month_nov','month_dec']:
-        feats_modif[month]=0
       feats_modif_x["month_sep"]=1
     elif m == "Octobre":
-      for month in ['month_jan', 'month_feb','month_mar', 'month_apr', 'month_may','month_jun', 'month_jul','month_aug', 'month_sep','month_oct', 'month_nov','month_dec']:
-        feats_modif[month]=0
       feats_modif_x["month_oct"]=1
     elif m == "Novembre":
-      for month in ['month_jan', 'month_feb','month_mar', 'month_apr', 'month_may','month_jun', 'month_jul','month_aug', 'month_sep','month_oct', 'month_nov','month_dec']:
-        feats_modif[month]=0
       feats_modif_x["month_nov"]=1
-    elif m == "Décembre":
-      for month in ['month_jan', 'month_feb','month_mar', 'month_apr', 'month_may','month_jun', 'month_jul','month_aug', 'month_sep','month_oct', 'month_nov','month_dec']:
-        feats_modif[month]=0
+    else:
       feats_modif_x["month_dec"]=1
 
+
     # Choix de la durée -----------------------------------
-    if d in ["1:00","2:00"]:
-      for duration in ["t_duration_1", "t_duration_2", "t_duration_3", "t_duration_4"]:
-        feats_modif[duration]=0
+    
+    if d in ["par défaut"]:
+        for duration in ["t_duration_1", "t_duration_2", "t_duration_3", "t_duration_4"]:
+          feats_modif_x[duration]=feats[duration]
+    elif d in ["1:00","2:00"]:
       feats_modif_x["t_duration_1"]=1
     elif d in ["3:00","4:00"]:
-      for duration in ["t_duration_1", "t_duration_2", "t_duration_3", "t_duration_4"]:
-        feats_modif[duration]=0
       feats_modif_x["t_duration_2"]=1    
-    elif d in ["5:00","6:00","7:00"]:
-      for duration in ["t_duration_1", "t_duration_2", "t_duration_3", "t_duration_4"]:
-        feats_modif[duration]=0
+    elif d in ["5:00","6:00","7:00","8:00"]:
       feats_modif_x["t_duration_3"]=1                  
-    elif d in ["8:00","9:00","10:00"]:
-      for duration in ["t_duration_1", "t_duration_2", "t_duration_3", "t_duration_4"]:
-        feats_modif[duration]=0
+    else:
       feats_modif_x["t_duration_4"]=1    
 
+  
     # Entrainement du modèle choisi -----------------------------------
 
 ##################
@@ -1165,14 +1139,21 @@ if page==pages[5]:
     col11.write(" ")
     col11.metric("Nombre de clients scorés positifs", sum(probas['Classification']), sum(probas['Classification'])-5289)  
     #col11.metric("Performance présumée de la campagne *", "{:.2%}".format(sum(probas['Classification'])/11162), "{:.2%}".format(sum(probas['Classification'])/11162-0.47))  
+    
     col11.write(" ")
-    col11.write(" ")
-    col11.metric("Score du modèle sélectionné *", "{:.2%}".format(accuracy), "{:.2%}".format(accuracy-xgb_accuracy)) 
+    #col11.metric("Score du modèle sélectionné *", "{:.2%}".format(accuracy), "{:.2%}".format(accuracy-xgb_accuracy)) 
 
+    col11.write("Matrice de confusion :")            
+    conf=pd.crosstab(y_test["deposit"], y_pred)
+    conf=conf.rename(columns = {0: 'Prédit NO', 1: 'Prédit YES'}) 
+    conf=conf.rename(index={0: 'Réel NO', 1: 'Réel YES'})
+    col11.write(conf) 
+         
+         
     # - *Performance : Pourcentage estimé de clients susceptibles d'effectuer un dépôt lors de la campagne.
-    st.info("""
-        - *Score du modèle : Taux de prédictions correctes effectuées par le modèle choisi. Le modèle XGBoost est utilisé comme référence.
-        """)
+    #st.info("""
+    #    - *Score du modèle : Taux de prédictions correctes effectuées par le modèle choisi. Le modèle XGBoost est utilisé comme référence.
+    #    """)
 
     #st.write(" ")
     #st.subheader("🏆 La combinaison gagnante")
