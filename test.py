@@ -1143,11 +1143,11 @@ if page==pages[5]:
     col11.write(" ")
     #col11.metric("Score du modèle sélectionné *", "{:.2%}".format(accuracy), "{:.2%}".format(accuracy-xgb_accuracy)) 
 
-    from sklearn.metrics import confusion_matrix
-    col11.write("Matrice de confusion") 
+    #from sklearn.metrics import confusion_matrix
+    #col11.write("Matrice de confusion") 
     #conf=pd.crosstab(target, y_pred) # modif
-    cm=confusion_matrix(target, y_pred)
-    col11.write(cm) 
+    #cm=confusion_matrix(target, y_pred)
+    #col11.write(cm) 
          
     # - *Performance : Pourcentage estimé de clients susceptibles d'effectuer un dépôt lors de la campagne.
     #st.info("""
