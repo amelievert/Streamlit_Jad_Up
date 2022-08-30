@@ -1060,8 +1060,12 @@ if page==pages[5]:
       classifieur = xgbc
       accuracy=xgb_accuracy
 
-    # Choix du mois -----------------------------------
-    if m == "Janvier":
+# Choix du mois -----------------------------------
+            
+    if m == "par défaut":
+      for month in ['month_jan', 'month_feb','month_mar', 'month_apr', 'month_may','month_jun', 'month_jul','month_aug', 'month_sep','month_oct', 'month_nov','month_dec']:  
+        feats_modif_x[month] = feats[month]
+    elif m == "Janvier":
       feats_modif_x["month_jan"]=1
     elif m == "Février":
       feats_modif_x["month_feb"]=1
@@ -1086,16 +1090,22 @@ if page==pages[5]:
     else:
       feats_modif_x["month_dec"]=1
 
+
     # Choix de la durée -----------------------------------
-    if d in ["1:00","2:00"]:
+    
+    if d in ["par défaut"]:
+        for duration in ["t_duration_1", "t_duration_2", "t_duration_3", "t_duration_4"]:
+          feats_modif_x[duration]=feats[duration]
+    elif d in ["1:00","2:00"]:
       feats_modif_x["t_duration_1"]=1
     elif d in ["3:00","4:00"]:
       feats_modif_x["t_duration_2"]=1    
-    elif d in ["4:00","5:00","6:00","7:00"]:
+    elif d in ["5:00","6:00","7:00","8:00"]:
       feats_modif_x["t_duration_3"]=1                  
     else:
       feats_modif_x["t_duration_4"]=1    
 
+  
     # Entrainement du modèle choisi -----------------------------------
 
 ##################
