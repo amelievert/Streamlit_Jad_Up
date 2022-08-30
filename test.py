@@ -1144,7 +1144,7 @@ if page==pages[5]:
     #col11.metric("Score du modèle sélectionné *", "{:.2%}".format(accuracy), "{:.2%}".format(accuracy-xgb_accuracy)) 
 
     col11.write("Matrice de confusion :") 
-    conf=pd.crosstab(target["deposit"], y_pred) # modif
+    conf=pd.crosstab(target, y_pred) # modif
     #cm=confusion_matrix(target[deposit], y_pred)
     col11.write(conf) 
          
