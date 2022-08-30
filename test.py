@@ -1143,12 +1143,9 @@ if page==pages[5]:
     col11.write(" ")
     #col11.metric("Score du modèle sélectionné *", "{:.2%}".format(accuracy), "{:.2%}".format(accuracy-xgb_accuracy)) 
 
-    col11.write("Matrice de confusion :")            
-    conf=pd.crosstab(y_test["deposit"], y_pred)
-    conf=conf.rename(columns = {0: 'Prédit NO', 1: 'Prédit YES'}) 
-    conf=conf.rename(index={0: 'Réel NO', 1: 'Réel YES'})
-    col11.write(conf) 
-         
+    col11.write("Matrice de confusion :") 
+    cm=confusion_matrix(target, y_pred)
+    col11.write(cm) 
          
     # - *Performance : Pourcentage estimé de clients susceptibles d'effectuer un dépôt lors de la campagne.
     #st.info("""
